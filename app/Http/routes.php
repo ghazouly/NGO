@@ -11,61 +11,17 @@
 |
 */
 
-Route::get('/sendMail','UserController@sendMail');
-Route::get('confirmRegister/{id}','UserController@activeRegister');
 
-Route::get('/',['as' => 'home', 'uses' => 'PostController@index']);
+Route::resource('/','PostsController');
 
-Route::get('/home',['as' => 'home', 'uses' => 'PostController@index']);
+Route::get('about','CatagoriesController@about');
+Route::get('contact','CatagoriesController@contact');
 
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
-
-Route::group(['middleware' => ['auth','confirm']], function()
-{
-
-	// show new post form
-	Route::get('new-post','PostController@create');
-	
-	// save new post
-	Route::post('new-post','PostController@store');
-	
-	// edit post form
-	Route::get('edit/{slug}','PostController@edit');
-	
-	// update post
-	Route::post('update','PostController@update');
-	
-	// delete post
-	Route::get('delete/{id}','PostController@destroy');
-	
-	// display user's all posts
-	Route::get('my-all-posts','UserController@user_posts_all');
-	
-	// display user's drafts
-	Route::get('my-drafts','UserController@user_posts_draft');
-	
-	
-	// add comment
-	Route::post('comment/add','CommentController@store');
-	
-	// delete comment
-	Route::post('comment/delete/{id}','CommentController@distroy');
-	
-});
-
-//users profile
-Route::get('user/{id}','UserController@profile')->where('id', '[0-9]+');
-
-// display list of posts
-Route::get('user/{id}/posts','UserController@user_posts')->where('id', '[0-9]+');
-
-// display single post
-Route::get('/{slug}',['as' => 'post', 'uses' => 'PostController@show'])->where('slug', '[A-Za-z0-9-_]+');
-
-Route::post('/readMoreComments','PostController@readMoreComments');
-Route::post('/readMorePosts','PostController@readMorePosts');
-
-
+Route::get('articles','CatagoriesController@articles');
+Route::get('campaigns','CatagoriesController@campaigns');
+Route::get('files','CatagoriesController@files');
+Route::get('legalsupport','CatagoriesController@legalsupport');
+Route::get('newsfeed','CatagoriesController@newsfeed');
+Route::get('newsletters','CatagoriesController@newsletters');
+Route::get('releases','CatagoriesController@releases');
+Route::get('reports','CatagoriesController@reports');
