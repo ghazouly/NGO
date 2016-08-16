@@ -13,6 +13,7 @@ class PostsTable extends Migration
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
+            $table->increments('id');
             $table ->unsignedInteger('author_id')
                     ->nullable();
             $table->foreign('author_id')
