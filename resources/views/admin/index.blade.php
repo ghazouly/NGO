@@ -1,8 +1,6 @@
-@extends('admin.main.app')
-
+@extends('admin.layouts.index')
 
 @section('content')
-
 
 <!-- Main content -->
     <section class="content">
@@ -71,7 +69,7 @@
       </div>
       <!-- /.row -->
       <!-- Main row -->
- 
+
           <!-- /.box (chat box) -->
 
           <!-- TO DO List -->
@@ -186,11 +184,11 @@
           </div>
           <!-- /.box -->
 
-       
+
 
         </section>
         <!-- /.Left col -->
-      
+
         <!-- right col -->
       </div>
       <!-- /.row (main row) -->

@@ -10,18 +10,17 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+  Route::group(['prefix' => '/masterAdmin'], function () {
+    Route::group(['middleware' => 'auth'], function () {
+      Route::resource('/post','Admin\PostController');
+      // Route::resource('/category','Admin\CategoryController');
+      Route::resource('/user','Admin\UserController');
+    });
+  Route::get('/','Admin\AuthController@index');
+  Route::post('/login','Admin\AuthController@login');
+  Route::get('/logout','Admin\AuthController@logout');
+});
 
-
-Route::resource('/','PostsController');
-
-Route::get('about','CatagoriesController@about');
-Route::get('contact','CatagoriesController@contact');
-
-Route::get('articles','CatagoriesController@articles');
-Route::get('campaigns','CatagoriesController@campaigns');
-Route::get('files','CatagoriesController@files');
-Route::get('legalsupport','CatagoriesController@legalsupport');
-Route::get('newsfeed','CatagoriesController@newsfeed');
-Route::get('newsletters','CatagoriesController@newsletters');
-Route::get('releases','CatagoriesController@releases');
-Route::get('reports','CatagoriesController@reports');
+Route::get('/','Site\SiteController@index');
+Route::get('/post/{id}','Site\SiteController@showPost');
+Route::get('/cate/{id}','Site\SiteController@show');
